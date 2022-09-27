@@ -10,4 +10,4 @@ From earliest to current:
 - Mezmo
 
 - Please visit my website [https://tatianaperry.com/]
-- Add me on Linkedin [https://tatianaperry.com/]
+- Add me on Linkedin [https://www.linkedin.com/in/tatianajperry/]
