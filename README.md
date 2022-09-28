@@ -2,12 +2,14 @@
 
 Writing samples are organized by job.
 
-From earliest to current:
+From most recent to earliest:
 
-- BigCommerce
-- Rapid7
-- Nylas
 - Mezmo
+- Nylas
+- Rapid7
+- BigCommerce
+
+## Contact
 
 - Please visit my website [https://tatianaperry.com/]
 - Add me on Linkedin [https://www.linkedin.com/in/tatianajperry/]
