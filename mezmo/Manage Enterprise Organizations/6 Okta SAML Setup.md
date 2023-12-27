@@ -8,12 +8,7 @@ index_title: Okta SAML Setup
 hidden: 
 ---published
 
-$plugin[{
-    "type": "synced-block",
-    "data": {
-        "syncedBlockId": "enteprisebanner"
-    }
-}]$
+<table _ngcontent-elb-c103=""><tbody _ngcontent-elb-c103=""><tr _ngcontent-elb-c103=""><th _ngcontent-elb-c103="" rowspan="2"></th><td _ngcontent-elb-c103=""></td></tr><tr _ngcontent-elb-c103=""><td _ngcontent-elb-c103=""><p>This feature is only available for customers on an Enterprise plan, and is restricted to <strong>Owner</strong> and <strong>Admin</strong> user roles. Please contact your Customer Support Manager or <a href="mailto:support@mezmo.com">support@mezmo.com</a> for more information.</p></td></tr></tbody></table>
 
 ## Step 1: Get Your Mezmo Single Sign On URL
 
@@ -32,16 +27,7 @@ $plugin[{
 7. Set the **Audience URI (SP Entity ID)** to your account ID. At the end of your URL. For example, `https://app.Mezmo.com/auth/saml/<126a6f63ab>`. You can leave the rest of the options as is.
 8. Fill out step 3 Feedback.
 
-$plugin[{
-    "type": "image",
-    "data": {
-        "url": "https:\/\/uploads.developerhub.io\/prod\/2KW7\/m9f85idk9zku2qs5tuvcsifqlbkjq5r8ww4jc9npvhjqlnc5mjo6nsjnuwj7m6sh.png",
-        "mode": "responsive",
-        "width": 2194,
-        "height": 654,
-        "caption": "Add your Mezmo Sign On URL to Single Sign On URL. Then set your Audience URI to your account ID."
-    }
-}]$
+![Add your Mezmo Sign On URL to Single Sign On URL. Then set your Audience URI to your account ID.](https://uploads.developerhub.io/prod/2KW7/osx697g0dzdrjtvm6qs7m924o2q41taja1olz06g74dhggbjbfcr8ek4tdmb5uac.png) d
 
 ## Step 3: SAML Configuration
 
