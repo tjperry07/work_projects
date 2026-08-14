@@ -1,0 +1,6 @@
+{
+  "mcpAllowlist": [
+    "cursor-ide-browser:*",
+    "playwright:*"
+  ]
+}

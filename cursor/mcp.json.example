@@ -1,0 +1,24 @@
+{
+  "mcpServers": {
+    "pylon": {
+      "url": "https://mcp.usepylon.com/"
+    },
+    "slack": {
+      "url": "https://mcp.slack.com/mcp",
+      "auth": {
+        "CLIENT_ID": "<your-slack-mcp-client-id>"
+      }
+    },
+    "gong": {
+      "command": "node",
+      "args": ["<absolute-path-to-repo>/.cursor/mcp-servers/gong/dist/index.js"]
+    },
+    "playwright": {
+      "command": "node",
+      "args": ["${workspaceFolder}/node_modules/@playwright/mcp/cli.js"]
+    },
+    "postman": {
+      "url": "https://mcp.postman.com/code"
+    }
+  }
+}

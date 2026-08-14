@@ -1,0 +1,100 @@
+---
+description: Coalesce docs writing conventions, style guide, vocabulary, and structure (complements Vale)
+globs: docs/**/*.md,docs/**/*.mdx
+alwaysApply: false
+---
+
+# Coalesce Documentation Writing
+
+Writing assistance complements Vale. Use `.styleguide/documentation-template.md` for structure and examples. Focus on grammar, spelling, style guide, and vocabulary.
+
+## Update Over Create
+
+- **Prefer updating existing docs** over writing new ones. Before creating a doc, search the codebase for existing content that covers the topic.
+- **Avoid redundancy**: If a doc already exists, add or revise sections there instead of duplicating information elsewhere.
+- **Consolidate**: When similar content appears in multiple places, merge it into a single canonical doc and link from other locations.
+
+## Structure and Organization (from documentation-template.md)
+
+- **Never start with "Overview"**: Start with a direct introduction that tells the reader what they'll learn or accomplish.
+- **Always include an introduction**: The first paragraph (1–2 sentences) sets expectations and describes the doc's purpose.
+- **All headings have an introduction**: Each section needs at least one paragraph of context before subsections or lists.
+- **Headings**: Start at H2 (title in front matter is H1). Title case, no periods. Use [AP guidelines](https://capitalizemytitle.com/).
+- **Docusaurus heading IDs**: Do **not** add custom anchors on headings (no `## Title {#custom-id}`). Docusaurus generates stable IDs from the heading text. Link to a section with the auto-generated hash, for example `[Add your URL and Token to Coalesce]: /docs/setup-your-project/setup-version-control#add-your-token-and-repo-to-coalesce`. If you change a heading’s wording, search for links that use the old hash and update them. To confirm a slug, inspect the built page or use `npm run build` and check `onBrokenAnchors` output.
+- **Concept docs**: Use question format ("What Is a Macro?"). **Procedural docs**: Use action-oriented headings ("Create a New Branch"). **Multi-step**: Use "Step 1: Create a New Branch".
+- **Guides (`docs/guides/`, especially from `/docs-agent-guide-author`)**: Prefer a **scenario-driven investigation** shape for discovery and Catalog topics: open with a stakeholder question and stakes, **What You Will Accomplish**, linear **Step 1…N** with **Checkpoint** after each phase, then **Synthesize your answer** (table plus example reply). Embed UI steps inside the investigation; do not organize the main body only by product area. See [`.cursor/reference/guide-quality-rubric.md`](../reference/guide-quality-rubric.md) and [`docs/guides/trace-metrics-and-dashboards-in-catalog.md`](../../docs/guides/trace-metrics-and-dashboards-in-catalog.md). **Build** guides (first pipeline, package install) still follow artifact-outcome intros and task sections per the rubric.
+- **Strategy and chooser docs** (when the page helps readers **pick an approach**): Prefer **scenario-first** subheadings that match how people describe their situation, for example **Batch Jobs and Timestamp Column** or **Streaming or Frequent Jobs and Change Events**. Under each heading, keep a **thin** block: one or two sentences of context, a plain-language pattern name (**Use:** watermark incremental, snapshot comparison, CDC, and so on), then short parallel bullets per platform or product path (**Snowflake**, **Databricks**, **BigQuery**). Readers should decide in **one pass** without a separate "map these bullets to sections below" layer. Put long procedures, grouped platform content (MDX **Tabs** when useful), tables, and exhaustive detail in later **H2** sections or linked docs, not inside every chooser block. A **cadence or product matrix** is optional; do not force a two-step framework (for example "pick starting point" then "pick loading pattern" then hunt for the right **H3**) when a single scenario list is clearer. Live example: `docs/build-your-pipeline/incremental-loading-strategies.md`.
+- **Do not describe the documentation site UI** in end-user prose. Avoid phrases such as "use these tabs," "in the tabs below," or "see the previous section" when you can state the reader's situation and outcome instead (for example "When you need to chunk large loads:"). **Product** UI names are fine, for example **Build Settings > Packages** or a **Node** **Join** tab inside the Coalesce app.
+- **Lists**: Numbered for procedures; bullets for options or features. All lists need an introductory sentence or colon. For several labeled guidelines or options, use **either** a real Markdown list (each item starts with `-` or a number) **or** a real subheading (`###` or `####` as fits the page) with the explanation in the following paragraph. Inside list items you may use `**Label** - explanation` (spaced hyphen, not an em dash). Do **not** use plain body paragraphs that open with `**Label** -` or `**Label:**` and continue on the same line; that mimics headings. Do not stack consecutive `**Label:**` opener paragraphs.
+- **Callouts**: Use `:::info[Title]`, `:::tip[Title]`, `:::warning[Title]` with a short title in brackets.
+- **What's Next**: Add only at the end of docs. Use bullet list format: `## What's Next?` followed by `- Item one`, `- Item two`. Place link reference definitions at the very bottom after "What's Next?" (see Links).
+
+## Product updates and changelog
+
+When you incorporate details from the Catalog changelog (`docs/catalog/changelog.md`) or other release-style notes, **describe what the product does or supports** in normal documentation voice. Do **not** use meta attribution such as "according to the changelog," "as of [date]," "the changelog notes that," or "per the [month] release." Treat capabilities as facts readers need, not as entries copied from an internal log.
+
+## Grammar (beyond Vale)
+
+- **Contractions**: Use them (it's, you're, aren't).
+- **Oxford comma**: Required.
+- **Avoid**: Exclamation points, "please," "via" (use with/using/through), parenthetical plurals "item(s)", slashes (use "or").
+- **Banned pattern-guide headings (exact phrases):** Never use **Anti-Patterns and Limits**, **Recommended Pattern**, or **When to Use This Pattern** as headings or body labels. Prefer situation- or outcome-oriented titles, for example **When This Approach Fits**, **How Coalesce Models This**, and **Limits and What to Avoid**. Keep decision criteria, solution shape, and constraints as content; rename the chrome.
+- **Pattern decision content is one H2 only:** Do not dedicate three top-level `##` headings to when-to-use, recommended shape, and limits. Use a single `##` (for example **How This Approach Works**) with `###` subheadings for those topics.
+- **Procedure steps are their own H2s:** In guides, each major task is `## Step 1: …`, `## Step 2: …`, or an action-oriented `##`. Do not nest major steps as `###` under a single **Implementation** (or similar) parent. Use numbered lists inside each step for clicks and form fields.
+- **Never use em dashes (—)**. Use commas, colons, or rephrase instead.
+- **No Unicode arrows (`→`)** in body copy. Use a plain greater-than sign (`>`) for UI paths and sequences, for example **Source > Database > Schema**, not `Source → Database → Schema`.
+- **Perspective**: Use "you" for the reader; avoid "user" or "customer."
+- **Readability**: Flesch-Kincaid 8–10; plain language.
+
+## Links
+
+- **In body:** Use `[Link text][]` (empty brackets mean reference name = link text).
+- **At bottom:** Add `[Link text]: url` for each link. Place after "What's Next?" with no horizontal rule (`---`, `***`, or `___`) before the definitions; use a blank line only if it improves readability.
+- **No horizontal rules:** Do not use `---`, `***`, or `___` on their own line as thematic breaks or separators anywhere in the doc body. Front matter delimiters at the top of the file are the only allowed `---` lines.
+- **Rules:** Link text and reference name must match exactly. List every URL. For pages under `docs/`, prefer root-relative doc paths (e.g. `/docs/setup-your-project/setup-version-control#add-your-token-and-repo-to-coalesce`). Use full `https://docs.coalesce.io/docs/...` URLs where the project standard requires it (for example some hub pages or release notes).
+- **In-page links:** Use the path plus `#` and Docusaurus’s generated heading slug only. Never rely on `{#manual-id}` on headings.
+- **No index in URLs:** Pages never end with `index` in the path. For a file like `docs/catalog/integrations/index.md`, use `/docs/catalog/integrations`, not `/docs/catalog/integrations/index`.
+
+**Example:** `Sign up for [Coalesce][].` then `[Coalesce]: https://coalesce.io/start-free/`
+
+## Style Guide (.styleguide)
+
+- **Voice**: Friendly, helpful, professional. **Tone**: Confident, informative, concise.
+
+### Voice, tone, and sentence patterns
+
+- **Instructional sentences state one clear purpose.** Tie the line to what the reader is doing on this page. Prefer a single calm sentence over a string of short, unrelated statements.
+- **Avoid staccato or blog-style fragments** that sound like talking points, rough notes, or a hot take. Do not hedge with phrases like "rough guide" when you can name the decision or task directly.
+- **Do not mix product philosophy and procedure in the same breath** unless the section is explicitly about that trade-off. Put architecture or "how pieces fit together" in its own short paragraph when it is needed.
+- **Avoid cross-product or cross-feature comparisons** that frame one platform as lacking relative to another, for example "doesn't have X like Snowflake," "no dedicated package in docs like Y," or "doesn't describe types that mirror [other product] **Foo**." Say **what is available on that platform** and **what readers can build** with base Nodes, SQL, parameters, and linked docs. Keep Snowflake, Databricks, BigQuery, and similar sections parallel in usefulness, not in catalog parity.
+- **Avoid leading with what Coalesce does not ship, provide, or mirror** relative to a vendor-native object or feature name, for example "Coalesce does not ship a BigQuery-native stream object." Describe the affirmative path in Coalesce (which Nodes, Job patterns, SQL, or parameters achieve the reader's goal) instead of naming the gap.
+- **Before a table or matrix**, lead with one sentence that says what the table helps the reader do, scoped to the topic.
+
+**Example, before a strategy table or chooser for incremental loading:**
+
+- **Avoid:** "Use the table below as a rough guide. Find the row that fits, then open the Coalesce docs or write SQL. Real-time delivery isn't one product toggle. You combine Nodes, Job timing, and SQL."
+- **Prefer:** "Use this table to help you decide which strategy to use for incremental loading."
+
+If you need extra context, such as how delivery relates to Nodes and Jobs, add a **separate** sentence or a following paragraph, not a pile of one-liners.
+
+**Chooser shape:** For the same topic, a **scenario-first** subsection under one **H2** (see **Strategy and chooser docs** above) can replace or complement one big matrix. Pick the shape that minimizes indirection for the reader.
+
+- **Capitalize** Coalesce terms: Workspace, Node, Packages, Project, Job Schedule, Catalog, etc.
+- **Links**: Describe the destination; avoid "click here." Use reference-style links (see Links section above). Use reference-style links: `[Link text][]` in body, `[Link text]: url` at bottom. Link text and reference name must match exactly. List every URL at the bottom of the page.
+
+## Vocabulary (from .styleguide Word List)
+
+- **Coalesce products**: Job Schedule, Job Scheduler, Catalog, Coalesce App, Coalesce Marketplace.
+- **Coalesce Marketplace vs Snowflake Marketplace:** Guides and setup pages that cover in-product Packages use [Coalesce Marketplace](https://docs.coalesce.io/docs/marketplace) throughout. When a page also covers Snowflake trial signup (often in Step 2), **both** names appear on the same page. Write **Coalesce Marketplace** in full for installable Packages and in-app package browsing. Write **Snowflake Marketplace** in full for Snowflake trial signup and Snowflake listing flows. Never use bare **Marketplace**, **the marketplace**, or **marketplace** alone when either product is meant. See [Snowflake Marketplace](https://docs.snowflake.com/en/collaboration/collaboration-marketplace-about) for the Snowflake product.
+- **Snowflake trial signup (Snowflake only):** Wherever a doc references starting a Coalesce trial via Snowflake, use this sentence verbatim: "Start a free Coalesce trial from our Snowflake Marketplace listing." Always hyperlink **Snowflake Marketplace listing** to `https://app.snowflake.com/marketplace/listing/GZSTZ1868F5RH/coalesce-coalesce` (reference-style: `[Snowflake Marketplace listing][]`). In signup or prerequisite sections, add this note: "To start a Marketplace trial you'll need the ACCOUNTADMIN role (or a role with privileges to create a database, warehouse, user, and role) and a verified email address in Snowflake." Do not use this sentence or prerequisite note for non-Snowflake trial paths (for example generic signup at coalesce.io).
+- **Spelling**: data set (not dataset), lifecycle (one word), codebase (one word), healthcare (one word).
+- **Capitalization**: Git (not git), DAG, CTE, API when first use.
+- **Terms**: Use "version control" where possible instead of "Git" (people think GitHub).
+- **Coalesce features**: Capitalize **Node Types**, **Base Node Types**, **Deploy Wizard**, **Storage Location**, **Storage Mapping**, **Presync**, and **Package** when referring to Coalesce product features—not generic English.
+- **re-create / re-creation**: Hyphenate verbs (`re-create`, `re-creates`, `re-created`) and the noun `re-creation` in body copy; use **Re-Creation** / **Re-Creates** in headings (AP title case). See `.cursor/reference/docs-vocabulary-capitalization-checklist.md` for the full scan list used by **`/docs-agent-check-all`**.
+- See `.styleguide` Vocabulary section and `.github/styles/config/vocabularies/docs/accept.txt` for full list.
+
+## Vale and Markdownlint
+
+- **Vale:** Run `vale path/to/file.md` on docs before publishing. Config: `.vale.ini`, `.github/styles/Coalesce/`. Ensure docs pass Vale.
+- **Markdownlint:** Run `npx markdownlint-cli2 "path/to/file.md"` on the same file. Config: `.markdownlint.json`. **Vale and Markdownlint are separate gates** — passing one does not satisfy the other. **`/docs-agent-check-all`** requires **both** commands in the shell; do not report "Looks good" after Vale alone.
